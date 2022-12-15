@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.plugin.parcelize' version '1.6.0-M1'
+    id 'org.jetbrains.kotlin.android' version '1.7.21'
+    id "org.jetbrains.kotlin.kapt" version "1.7.21"
+}
+
+apply from: '../dependencies.gradle'
+
+android {
+    namespace 'cm.velotio.disneymotions'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "cm.velotio.disneymotions"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    // material
+    implementation "com.google.android.material:material:$versions.materialVersion"
+    // architecture components
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
+    implementation "androidx.room:room-runtime:$versions.roomVersion"
+    implementation "androidx.room:room-ktx:$versions.roomVersion"
+    kapt "androidx.room:room-compiler:$versions.roomVersion"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+    // binding
+    implementation "com.github.skydoves:bindables:$versions.bindablesVersion"
+
+    // koin
+    implementation "org.koin:koin-android:$versions.koinVersion"
+    implementation "org.koin:koin-android-scope:$versions.koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$versions.koinVersion"
+
+    // network
+    implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+}
