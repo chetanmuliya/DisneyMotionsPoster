@@ -1,8 +1,10 @@
-package cm.architecture.disneymotions;
+package cm.architecture.disneymotions.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import cm.velotio.disneymotions.R;
 
 public class MainActivity extends AppCompatActivity {
 
