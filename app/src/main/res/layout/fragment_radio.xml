@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.skydoves.disneymotions.view.adapter.PosterCircleAdapter" />
+            type="cm.architecture.disneymotions.view.adapter.PosterCircleAdapter" />
 
     </data>
 

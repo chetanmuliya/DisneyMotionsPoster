@@ -24,7 +24,7 @@ ext.versions = [
         bindablesVersion       : '1.0.9',
 
         // di
-        koinVersion            : '2.0.1',
+        koinVersion            : '3.3.0',
 
         // network
         retrofitVersion        : '2.9.0',

@@ -15,6 +15,7 @@ import cm.velotio.disneymotions.databinding.FragmentHomeBinding
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.skydoves.bindables.BindingFragment
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -25,7 +26,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         return binding {
-            //viewModel = getSharedViewModel()
+            viewModel = getViewModel<MainViewModel>()
             adapter = PosterAdapter()
         }.root
     }

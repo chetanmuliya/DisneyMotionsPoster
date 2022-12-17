@@ -42,6 +42,15 @@ android {
     buildFeatures {
         dataBinding true
     }
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+        test.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
+    }
 }
 
 dependencies {
@@ -66,9 +75,8 @@ dependencies {
     implementation "com.github.skydoves:bindables:$versions.bindablesVersion"
 
     // koin
-    implementation "org.koin:koin-android:$versions.koinVersion"
-    implementation "org.koin:koin-android-scope:$versions.koinVersion"
-    implementation "org.koin:koin-android-viewmodel:$versions.koinVersion"
+    implementation "io.insert-koin:koin-core:$versions.koinVersion"
+    implementation "io.insert-koin:koin-android:$versions.koinVersion"
 
     // network
     implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"

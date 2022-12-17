@@ -10,11 +10,11 @@ import cm.architecture.disneymotions.model.data.Poster
 interface PosterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPosterList(posters: List<Poster>)
+    fun insertPosterList(posters: List<Poster>)
 
     @Query("SELECT * FROM Poster WHERE id = :id_")
-    suspend fun getPoster(id_: Long): Poster
+    fun getPoster(id_: Long): Poster
 
     @Query("SELECT * FROM Poster")
-    suspend fun getPosterList(): List<Poster>
+    fun getPosterList(): List<Poster>
 }
